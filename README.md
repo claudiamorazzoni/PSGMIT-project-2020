@@ -8,7 +8,8 @@ In 1936 Ronald Fisher, biologist and statistician presented a set of data. It is
 
 The data set consists of 50 samples from each of three species of Iris (Iris Setosa, Iris virginica, and Iris versicolor). Just for reference, here are pictures of the three flowers species:
 
-![](/claud/PycharmProjects/PSGMIT-project-2020)
+![iris-machinelearning](https://user-images.githubusercontent.com/29405430/79043073-c1b01300-7bf4-11ea-9038-e99a9785db50.png)
+image from [Machine Learning] (https://www.datacamp.com/community/tutorials/machine-learning-in-r)
 
 Four features were measured in centimeters from each sample: 
 * the length of the sepals
