@@ -1,11 +1,7 @@
 import pandas as pd
-import numpy as np
+import sys
 import matplotlib.pyplot as plt
 
-
-
-
-import seaborn as sns
 
 # loading iris.csv
 d= pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
@@ -20,7 +16,14 @@ df.replace({'Iris-versicolor': 'versicolor'}, regex=True, inplace=True)
 df.replace({'Iris-virginica': 'virginica'}, regex=True, inplace=True)
 
 # a - take a look the first 10 rows of data for each class
-print(df.head(10))
+save_exit = sys.stdout
+file = open('Summary.txt', 'w')
+sys.stdout = file
+w = df.head(10)
+print(w)
+print(df.info())
+sys.stdout = save_exit
+file.close()
 
 # b - Division of `Species`
 a = df[df['species'].str.contains("setosa")].groupby('species').size()
