@@ -1,62 +1,88 @@
 import pandas as pd
-import sys
 import matplotlib.pyplot as plt
+import sys
+#import pandasprofiling as pd_p
 
 
-# loading iris.csv
-d= pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
-df = pd.DataFrame(d)
-print(df)
 
-# basic statistics - outputs a summary of each variable to a single text file
+# 1 - loading iris.csv
+df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
+
+# a)
+#pd_p.ProfileReport(df)
+
+# 2 - arranging the column data
 df.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
-print(df.columns)
 df.replace({'Iris-setosa': 'setosa'}, regex=True, inplace=True)
 df.replace({'Iris-versicolor': 'versicolor'}, regex=True, inplace=True)
 df.replace({'Iris-virginica': 'virginica'}, regex=True, inplace=True)
 
-# a - take a look the first 10 rows of data for each class
+# 3 - basic statistics
+# outputs a summary of each variable to a single text file
 save_exit = sys.stdout
 file = open('Summary.txt', 'w')
 sys.stdout = file
-w = df.head(10)
-print(w)
-print(df.info())
-sys.stdout = save_exit
-file.close()
 
-# b - Division of `Species`
+# a) each class has the same number of instances
 a = df[df['species'].str.contains("setosa")].groupby('species').size()
 b = df[df['species'].str.contains("setosa")].groupby('species').size()
 c = df[df['species'].str.contains("setosa")].groupby('species').size()
 print(a)
 print(b)
 print(c)
-
-# c - Summary
+# b) taking a look at the first 10 lines
+w = df.head(10)
+print(w)
+# c) instances and attributes info
 print(df.info())
+# d)a little more detail
+print(df.describe())
+# e) What will be the correlation between the variables?
+print(df.corr())
 
-# saves a histogram of each variable to png files,
+sys.stdout = save_exit
+file.close()
 
-df.hist(column='petal_length', by='species', bins='auto') # These show that the distribution of values for Petal.Length are different for each class.
+
+# 4 - box and whisker plots
+df.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
+plt.savefig('Boxplot.png')
+plt.show()
+
+# saving a histogram of each variable to png files.
+df.hist(column='petal_length', by='species', bins='auto')
 plt.savefig('Petal_histogram.png')
 df.hist(column='sepal_length', by='species', bins='auto')
 plt.savefig('Sepal_histogram.png')
 plt.show()
 plt.close()
 
-# # outputs a scatter plot of each pair of variables
-# another type of plot to see correlations
-#g = sns.lmplot(x='petal_length', y='sepal_length', hue='species', data=df, palette='Set1')
+# outputs a scatter plot of each pair of variables - # another type of plot to see correlations
+plt.figure()
+plt.scatter(x="sepal_length", y="petal_width", label='Petal L&W', color='b', marker='d', s=10, data=df)
+plt.xlabel('Sepal length')
+plt.ylabel('Petal width')
+plt.savefig('petalsepal_scatter.png')
+plt.show()
 
-#plt.show()
-plt.scatter(x="petal_length", y="petal_width", label='Petal L&W', color='g', marker='*', s=100, data=df)
+plt.scatter(x="petal_length", y="petal_width", label='Petal L&W', marker='o', s=20, data=df)
 plt.xlabel('Petal length')
 plt.ylabel('Petal width')
-plt.savefig('petal_scatter.png')
+plt.savefig('petallw_scatter.png')
 plt.show()
-plt.scatter(x="sepal_length", y="sepal_width", label='Sepal L&W', color='r', marker='*', s=100, data=df)
+
+plt.scatter(x="sepal_length", y="sepal_width", label='Sepal L&W', color='r', marker='h', s=10, data=df)
 plt.xlabel('Sepal length')
 plt.ylabel('Sepal width')
-plt.savefig('sepal_scatter.png')
+plt.savefig('sepallw_scatter.png')
 plt.show()
+
+plt.scatter(x="petal_length", y="sepal_width", label='Sepal L&W', color='k', marker='s', s=20, data=df)
+plt.xlabel('Petal length')
+plt.ylabel('Sepal width')
+plt.savefig('sepalpetal_scatter.png')
+plt.show()
+
+pd.plotting.scatter_matrix(df, alpha=0.5, cmap='True', figsize=(12,10), diagonal='kde', marker='.')
+plt.show()
+
