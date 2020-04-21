@@ -18,3 +18,25 @@ Four features were measured in centimeters from each sample:
 * the width of the petals
 
 #### Information about the original paper and usages of the dataset can be found in the http://archive.ics.uci.edu/ml/datasets/Iris
+
+## Code descriptions
+
+1 - I created a variable that receives the reading from the Iris csv file. (code - .read_csv)
+
+2 - Observing the data at first, it was necessary to organize and rename the column names. (code - .columns and .replace)
+
+3 - I started the basic statistics to have better data parameters. I captured the code outputs and saved it to a text file. (code - sy.stdout). I named this file 'Summary'.
+  a) I could see that each class has the same number of instances (50 or 33% of the data set). I used the groupby () function, which basically divides the data into different groups according to the chosen variable (in this case, they were the names of each species).
+  b) I analyzed the data from the first 10 lines to see if there was any clue of convergence or divergence of the information. ( code - .head)
+  c) To have more details of the file about instances and attributes. (code - .info)
+  d) I was able to verify that all numerical values have the same scale (centimeters) and similar intervals between 0 and 8 centimeters.(code - .describe) 
+  e) What will be the correlation between the variables? (code - .corr)
+  
+4 - As the input variables are numeric, I was able to create box graphs for each one. This gives me a much clearer idea of the distribution of the input attributes.
+
+5 - I was also able to create a histogram of each input variable to get an idea of the distribution. It appears that perhaps two of the input variables have a Gaussian distribution. This may be useful in the future to see how we can use algorithms that can exploit this assumption.
+
+6 - With the scatterplot matrix I observed the diagonal grouping of some pairs of attributes. This suggests a high correlation and a predictable relationship.
+
+## References
+https://pandas.pydata.org/docs/reference/api/pandas.plotting.scatter_matrix.html
