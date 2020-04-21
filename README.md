@@ -39,4 +39,10 @@ Four features were measured in centimeters from each sample:
 6 - With the scatterplot matrix I observed the diagonal grouping of some pairs of attributes. This suggests a high correlation and a predictable relationship.
 
 ## References
+https://www.makeareadme.com/
+https://en.wikipedia.org/wiki/Iris_flower_data_set
+https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.plot.html
+https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.hist.html
+https://matplotlib.org/3.1.3/api/_as_gen/matplotlib.pyplot.scatter.html
 https://pandas.pydata.org/docs/reference/api/pandas.plotting.scatter_matrix.html
+https://www.kaggle.com/gopaltirupur/iris-data-analysis-and-machine-learning-python
