@@ -1,15 +1,11 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 import sys
-#import pandasprofiling as pd_p
-
 
 
 # 1 - loading iris.csv
 df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None)
-
-# a)
-#pd_p.ProfileReport(df)
 
 # 2 - arranging the column data
 df.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
@@ -38,7 +34,14 @@ print(df.info())
 # d)a little more detail
 print(df.describe())
 # e) What will be the correlation between the variables?
-print(df.corr())
+plt.figure(figsize=(10, 7))
+sns.heatmap(df.corr(),
+            annot = True,
+            fmt = '.2f',
+            cmap='Blues')
+plt.title('Correlation between variables in the Iris dataset')
+plt.savefig('Correlation.png')
+plt.show()
 
 sys.stdout = save_exit
 file.close()
@@ -84,5 +87,6 @@ plt.savefig('sepalpetal_scatter.png')
 plt.show()
 
 pd.plotting.scatter_matrix(df, alpha=0.5, cmap='True', figsize=(12,10), diagonal='kde', marker='.')
+plt.savefig('Iris_scattermatrix.png')
 plt.show()
 
