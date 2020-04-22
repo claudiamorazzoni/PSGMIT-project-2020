@@ -36,10 +36,14 @@ Four features were measured in centimeters from each sample:
 
 5 - I was also able to create a histogram of each input variable to get an idea of the distribution. It appears that perhaps two of the input variables have a Gaussian distribution. This may be useful in the future to see how we can use algorithms that can exploit this assumption.
 
-6 - With the scatterplot matrix I observed the diagonal grouping of some pairs of attributes. This suggests a high correlation and a predictable relationship.
+6 - With the scatterplot matrix I observed the diagonal grouping of some pairs of attributes. This suggests a high correlation and a predictable relationship. The value shown for each correlation ranges from -1 - which indicates a perfect negative correlation - to +1 - a perfect positive correlation. Therefore, the closer to 1 or -1 there is a strong correlation.
+
+
+![Correlation](https://user-images.githubusercontent.com/29405430/79970153-68fd3780-848a-11ea-9e9b-178e136b1dbd.png)
+
 
 ## Install
-This project requires Python 2.7 and the following Python libraries installed:
+This project requires Python 3 and the following Python libraries installed:
 
 * Pandas
 * Matplotlib
